@@ -7,7 +7,7 @@ typedef struct
 
 int main(int argc, char *argv[])
 {
-  printf("Size of myStruct_t is : %d\n", sizeof(myStruct_t));
+  printf("Size of myStruct_t is : %lu\n", sizeof(myStruct_t));
   
   return 0;
 }

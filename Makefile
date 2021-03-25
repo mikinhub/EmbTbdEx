@@ -22,20 +22,49 @@ CLEANFILES := ${CLEANFILES} ${OBJS_Tiny} ${OBJS_A} ${OBJS_B} ${OBJS_Huge}
 ## CLFAGS
 CFLAGS    := ${CFLAGS} -Wall
 CFLAGS    := ${CFLAGS} -c
-CFLAGS    := ${CFLAGS} $(addprefix -I,$(wildcard src/*/))
+CFLAGS    := ${CFLAGS} $(addprefix -I,$(wildcard */ src/*/))
 
 all: ${TARGETS}
 
+# Rules for targets
+.PHONY: fw_Tiny
 fw_Tiny: ${OBJS_Tiny}
+	@gcc -o $@ $^
+	@echo "Running $@"
+	@./$@
 
+.PHONY: fw_A
 fw_A: ${OBJS_A}
+	@gcc -o $@ $^
+	@echo "Running $@"
+	@./$@
 
+
+.PHONY: fw_B
 fw_B: ${OBJS_B}
+	@gcc -o $@ $^
+	@echo "Running $@"
+	@./$@
 
+.PHONY: fw_Huge
 fw_Huge: ${OBJS_Huge}
+	@gcc -o $@ $^
+	@echo "Running $@"
+	@./$@
 
+# Rules for objects
 %_Tiny.o: %.c
-	gcc ${CFLAGS} -DCFG=Tiny $^ -o $@
+	@gcc ${CFLAGS} -DCFG=Tiny $^ -o $@
 
+%_A.o: %.c
+	@gcc ${CFLAGS} -DCFG=A $^ -o $@
+
+%_B.o: %.c
+	@gcc ${CFLAGS} -DCFG=B $^ -o $@
+
+%_Huge.o: %.c
+	@gcc ${CFLAGS} -DCFG=Huge $^ -o $@
+
+# Rule for cleaning
 clean:
 	rm -f ${CLEANFILES}
