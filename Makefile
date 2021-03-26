@@ -54,16 +54,16 @@ fw_Huge: ${OBJS_Huge}
 
 # Rules for objects
 %_Tiny.o: %.c
-	@gcc ${CFLAGS} -DCFG=Tiny $^ -o $@
+	@gcc ${CFLAGS} -DCFG_Tiny $^ -o $@
 
 %_A.o: %.c
-	@gcc ${CFLAGS} -DCFG=A $^ -o $@
+	@gcc ${CFLAGS} -DCFG_A $^ -o $@
 
 %_B.o: %.c
-	@gcc ${CFLAGS} -DCFG=B $^ -o $@
+	@gcc ${CFLAGS} -DCFG_B $^ -o $@
 
 %_Huge.o: %.c
-	@gcc ${CFLAGS} -DCFG=Huge $^ -o $@
+	@gcc ${CFLAGS} -DCFG_Huge $^ -o $@
 
 # Rule for cleaning
 clean:
