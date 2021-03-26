@@ -1,8 +1,8 @@
 
 ## List of different configurations
 CONFIGS := ${CONFIGS} Tiny
-CONFIGS := ${CONFIGS} A
-CONFIGS := ${CONFIGS} B
+CONFIGS := ${CONFIGS} Mini
+CONFIGS := ${CONFIGS} Medi
 CONFIGS := ${CONFIGS} Huge
 
 ## List of targets
@@ -14,10 +14,10 @@ SRC := $(wildcard src/*.c src/**/*.c)
 
 ## List of Object Files
 OBJS_Tiny  := $(patsubst %.c,%_Tiny.o,${SRC})
-OBJS_A     := $(patsubst %.c,%_A.o,${SRC})
-OBJS_B     := $(patsubst %.c,%_B.o,${SRC})
+OBJS_Mini  := $(patsubst %.c,%_Mini.o,${SRC})
+OBJS_Medi  := $(patsubst %.c,%_Medi.o,${SRC})
 OBJS_Huge  := $(patsubst %.c,%_Huge.o,${SRC})
-CLEANFILES := ${CLEANFILES} ${OBJS_Tiny} ${OBJS_A} ${OBJS_B} ${OBJS_Huge}
+CLEANFILES := ${CLEANFILES} ${OBJS_Tiny} ${OBJS_Mini} ${OBJS_Medi} ${OBJS_Huge}
 
 ## CLFAGS
 CFLAGS    := ${CFLAGS} -Wall
@@ -33,15 +33,15 @@ fw_Tiny: ${OBJS_Tiny}
 	@echo "Running $@"
 	@./$@
 
-.PHONY: fw_A
-fw_A: ${OBJS_A}
+.PHONY: fw_Mini
+fw_Mini: ${OBJS_Mini}
 	@gcc -o $@ $^
 	@echo "Running $@"
 	@./$@
 
 
-.PHONY: fw_B
-fw_B: ${OBJS_B}
+.PHONY: fw_Medi
+fw_Medi: ${OBJS_Medi}
 	@gcc -o $@ $^
 	@echo "Running $@"
 	@./$@
@@ -56,11 +56,11 @@ fw_Huge: ${OBJS_Huge}
 %_Tiny.o: %.c
 	@gcc ${CFLAGS} -DCFG_Tiny $^ -o $@
 
-%_A.o: %.c
-	@gcc ${CFLAGS} -DCFG_A $^ -o $@
+%_Mini.o: %.c
+	@gcc ${CFLAGS} -DCFG_Mini $^ -o $@
 
-%_B.o: %.c
-	@gcc ${CFLAGS} -DCFG_B $^ -o $@
+%_Medi.o: %.c
+	@gcc ${CFLAGS} -DCFG_Medi $^ -o $@
 
 %_Huge.o: %.c
 	@gcc ${CFLAGS} -DCFG_Huge $^ -o $@

@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+#include <FeatComplete_api.h>
+#include <FeatPartial.h>
+
 typedef struct
 {
   int i;
@@ -8,6 +11,7 @@ typedef struct
 int main(int argc, char *argv[])
 {
   printf("Size of myStruct_t is : %lu\n", sizeof(myStruct_t));
+  FC_print();
   
   return 0;
 }
