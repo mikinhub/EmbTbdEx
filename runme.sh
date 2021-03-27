@@ -7,16 +7,19 @@ docker build --tag $TAG docker/.
 # Run image
 case $1 in
     clean)
-	CMD="make -C /data clean"
+	docker run --rm -it -v $PWD:/data $TAG make -sC /data clean
 	;;
 
-    sh|bash)
-	CMD="sh"
+    sh)
+	docker run --rm -it -v $PWD:/data $TAG sh
 	;;
 
     *)
-	CMD="make -C /data"
+	docker run --rm -it -v $PWD:/data $TAG make -sC /data Tiny
+	docker run --rm -it -v $PWD:/data $TAG make -sC /data Mini
+	docker run --rm -it -v $PWD:/data $TAG make -sC /data Medi
+	docker run --rm -it -v $PWD:/data $TAG make -sC /data Huge
 	;;
 esac
-docker run --rm -it -v $PWD:/data $TAG $CMD
+
 
