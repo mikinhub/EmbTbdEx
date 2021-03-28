@@ -6,6 +6,7 @@
 typedef struct
 {
   int i;
+  int array[1 + FC_ARRAY + FP_ARRAY];
 } myStruct_t;
 
 int main(int argc, char *argv[])

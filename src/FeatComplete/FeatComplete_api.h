@@ -4,20 +4,21 @@
 #include <featureCfg.h>
 #include <FeatComplete_int.h>
 
-// Feature Control Flag
-#if (FEAT_COMP == 0) // Excluded
-static const int FC_Control = (0);
-#else
+#if F_IF_ENABLED(FEAT_COMP)
+
+/* Feature enabled */
 extern int FC_Control;
-#endif
+#define FC_ARRAY (6)
+
+#else // F_IF_ENABLED(FEAT_COMP)
+
+/* Feature disabled */
+static const int FC_Control = (0);
+#define FC_ARRAY (0)
+
+#endif // F_IF_ENABLED(FEAT_COMP)
 
 // API
-static inline void FC_print(void)
-{
-  if (FC_Control)
-  {
-    _FC_print();
-  }
-}
+F_API void FC_print(void) { return (FC_Control) ? _FC_print() : 0; }
 
 #endif // __FEATCOMPLETE_API_H__
